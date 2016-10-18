@@ -24,119 +24,139 @@ func StreamHtmlHeader(qw422016 *qt422016.Writer) {
 <html>
   <head>
 	<meta charset="UTF-8">
-	<meta name="description" content="login form">
-	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
-	<meta name="author" content="Joan Marc Carbó i Arnau">
+  </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="login form">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="Joan Marc Carbó i Arnau">
+    <title>IMIM Central login</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 `)
-//line login.qtpl:9
+//line login.qtpl:28
 }
 
-//line login.qtpl:9
+//line login.qtpl:28
 func WriteHtmlHeader(qq422016 qtio422016.Writer) {
-	//line login.qtpl:9
+	//line login.qtpl:28
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:9
+	//line login.qtpl:28
 	StreamHtmlHeader(qw422016)
-	//line login.qtpl:9
+	//line login.qtpl:28
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:9
+//line login.qtpl:28
 }
 
-//line login.qtpl:9
+//line login.qtpl:28
 func HtmlHeader() string {
-	//line login.qtpl:9
+	//line login.qtpl:28
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:9
+	//line login.qtpl:28
 	WriteHtmlHeader(qb422016)
-	//line login.qtpl:9
+	//line login.qtpl:28
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:9
+	//line login.qtpl:28
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:9
+	//line login.qtpl:28
 	return qs422016
-//line login.qtpl:9
+//line login.qtpl:28
 }
 
-//line login.qtpl:11
+//line login.qtpl:30
 func StreamBodyHeader(qw422016 *qt422016.Writer) {
-	//line login.qtpl:11
+	//line login.qtpl:30
 	qw422016.N().S(`
 <body>
+<div class="container">
 `)
-//line login.qtpl:13
+//line login.qtpl:33
 }
 
-//line login.qtpl:13
+//line login.qtpl:33
 func WriteBodyHeader(qq422016 qtio422016.Writer) {
-	//line login.qtpl:13
+	//line login.qtpl:33
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:13
+	//line login.qtpl:33
 	StreamBodyHeader(qw422016)
-	//line login.qtpl:13
+	//line login.qtpl:33
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:13
+//line login.qtpl:33
 }
 
-//line login.qtpl:13
+//line login.qtpl:33
 func BodyHeader() string {
-	//line login.qtpl:13
+	//line login.qtpl:33
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:13
+	//line login.qtpl:33
 	WriteBodyHeader(qb422016)
-	//line login.qtpl:13
+	//line login.qtpl:33
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:13
+	//line login.qtpl:33
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:13
+	//line login.qtpl:33
 	return qs422016
-//line login.qtpl:13
+//line login.qtpl:33
 }
 
-//line login.qtpl:15
+//line login.qtpl:35
 func StreamFlashMessages(qw422016 *qt422016.Writer, messages string) {
-	//line login.qtpl:15
+	//line login.qtpl:35
 	qw422016.N().S(`
 <div>
 `)
-	//line login.qtpl:17
+	//line login.qtpl:37
 	qw422016.E().S(messages)
-	//line login.qtpl:17
+	//line login.qtpl:37
 	qw422016.N().S(`
 </div>
 `)
-//line login.qtpl:19
+//line login.qtpl:39
 }
 
-//line login.qtpl:19
+//line login.qtpl:39
 func WriteFlashMessages(qq422016 qtio422016.Writer, messages string) {
-	//line login.qtpl:19
+	//line login.qtpl:39
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:19
+	//line login.qtpl:39
 	StreamFlashMessages(qw422016, messages)
-	//line login.qtpl:19
+	//line login.qtpl:39
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:19
+//line login.qtpl:39
 }
 
-//line login.qtpl:19
+//line login.qtpl:39
 func FlashMessages(messages string) string {
-	//line login.qtpl:19
+	//line login.qtpl:39
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:19
+	//line login.qtpl:39
 	WriteFlashMessages(qb422016, messages)
-	//line login.qtpl:19
+	//line login.qtpl:39
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:19
+	//line login.qtpl:39
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:19
+	//line login.qtpl:39
 	return qs422016
-//line login.qtpl:19
+//line login.qtpl:39
 }
 
-//line login.qtpl:21
+//line login.qtpl:41
 func StreamLoginForm(qw422016 *qt422016.Writer, lt string) {
-	//line login.qtpl:21
+	//line login.qtpl:41
 	qw422016.N().S(`
 <form method="POST">
 	<label>Username:</label>
@@ -144,108 +164,113 @@ func StreamLoginForm(qw422016 *qt422016.Writer, lt string) {
 	<label>Password:</label>
 	<input type="text" name="password" id="password"/>
 	<input type="hidden" name="lt" id="lt" value="`)
-	//line login.qtpl:27
+	//line login.qtpl:47
 	qw422016.E().S(lt)
-	//line login.qtpl:27
+	//line login.qtpl:47
 	qw422016.N().S(`"/>
 	<input type="submit" name="submit" id="submit" value="Login"/>
 </form>
 `)
-//line login.qtpl:30
+//line login.qtpl:50
 }
 
-//line login.qtpl:30
+//line login.qtpl:50
 func WriteLoginForm(qq422016 qtio422016.Writer, lt string) {
-	//line login.qtpl:30
+	//line login.qtpl:50
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:30
+	//line login.qtpl:50
 	StreamLoginForm(qw422016, lt)
-	//line login.qtpl:30
+	//line login.qtpl:50
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:30
+//line login.qtpl:50
 }
 
-//line login.qtpl:30
+//line login.qtpl:50
 func LoginForm(lt string) string {
-	//line login.qtpl:30
+	//line login.qtpl:50
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:30
+	//line login.qtpl:50
 	WriteLoginForm(qb422016, lt)
-	//line login.qtpl:30
+	//line login.qtpl:50
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:30
+	//line login.qtpl:50
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:30
+	//line login.qtpl:50
 	return qs422016
-//line login.qtpl:30
+//line login.qtpl:50
 }
 
-//line login.qtpl:33
+//line login.qtpl:53
 func StreamBodyFooter(qw422016 *qt422016.Writer) {
-	//line login.qtpl:33
+	//line login.qtpl:53
 	qw422016.N().S(`
+</div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 `)
-//line login.qtpl:35
+//line login.qtpl:60
 }
 
-//line login.qtpl:35
+//line login.qtpl:60
 func WriteBodyFooter(qq422016 qtio422016.Writer) {
-	//line login.qtpl:35
+	//line login.qtpl:60
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:35
+	//line login.qtpl:60
 	StreamBodyFooter(qw422016)
-	//line login.qtpl:35
+	//line login.qtpl:60
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:35
+//line login.qtpl:60
 }
 
-//line login.qtpl:35
+//line login.qtpl:60
 func BodyFooter() string {
-	//line login.qtpl:35
+	//line login.qtpl:60
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:35
+	//line login.qtpl:60
 	WriteBodyFooter(qb422016)
-	//line login.qtpl:35
+	//line login.qtpl:60
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:35
+	//line login.qtpl:60
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:35
+	//line login.qtpl:60
 	return qs422016
-//line login.qtpl:35
+//line login.qtpl:60
 }
 
-//line login.qtpl:37
+//line login.qtpl:62
 func StreamHtmlFooter(qw422016 *qt422016.Writer) {
-	//line login.qtpl:37
+	//line login.qtpl:62
 	qw422016.N().S(`
 </html>
 `)
-//line login.qtpl:39
+//line login.qtpl:64
 }
 
-//line login.qtpl:39
+//line login.qtpl:64
 func WriteHtmlFooter(qq422016 qtio422016.Writer) {
-	//line login.qtpl:39
+	//line login.qtpl:64
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:39
+	//line login.qtpl:64
 	StreamHtmlFooter(qw422016)
-	//line login.qtpl:39
+	//line login.qtpl:64
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:39
+//line login.qtpl:64
 }
 
-//line login.qtpl:39
+//line login.qtpl:64
 func HtmlFooter() string {
-	//line login.qtpl:39
+	//line login.qtpl:64
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:39
+	//line login.qtpl:64
 	WriteHtmlFooter(qb422016)
-	//line login.qtpl:39
+	//line login.qtpl:64
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:39
+	//line login.qtpl:64
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:39
+	//line login.qtpl:64
 	return qs422016
-//line login.qtpl:39
+//line login.qtpl:64
 }
