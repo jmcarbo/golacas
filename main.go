@@ -79,7 +79,7 @@ func NewTGC(ctx *iris.Context, ticket *Ticket) {
 	cookie.SetKey(cookieName)
 	tgt := NewTicket("TGT", ticket.Service, ticket.User, false)
 	cookie.SetValue(tgt.Value)
-	cookie.SetPath(basePath)
+	cookie.SetPath(*basePath)
 	ctx.SetCookie(&cookie)
 }
 
@@ -97,14 +97,14 @@ func DeleteTGC(ctx *iris.Context)  {
 	var cookie fasthttp.Cookie
 	cookie.SetKey(cookieName)
 	cookie.SetValue("deleted")
-	cookie.SetPath(basePath)
+	cookie.SetPath(*basePath)
 	ctx.SetCookie(&cookie)
 
 	return
 }
 
 var (
-	basePath string = "/cas"
+	basePath = flag.String("basepath", "", "basepath")
 	tickets = map[string]Ticket{}
 	cookieName = "TGCGOLACAS"
 	mutex = &sync.Mutex{}
@@ -123,11 +123,18 @@ func main() {
 }
 
 func setApi() {
-	api := iris.Party(basePath)
-	api.Get("/login", login)("login")
-	api.Post("/login", loginPost)
-	api.Get("/logout", logout)("logout")
-	api.Get("/validate", validate)("validate")
+	if *basePath != "" {
+		api := iris.Party(*basePath)
+		api.Get("/login", login)("login")
+		api.Post("/login", loginPost)
+		api.Get("/logout", logout)("logout")
+		api.Get("/validate", validate)("validate")
+	} else {
+		iris.Get("/login", login)("login")
+		iris.Post("/login", loginPost)
+		iris.Get("/logout", logout)("logout")
+		iris.Get("/validate", validate)("validate")
+	}
 
 }
 
