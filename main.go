@@ -105,6 +105,7 @@ func DeleteTGC(ctx *iris.Context)  {
 
 var (
 	basePath = flag.String("basepath", "", "basepath")
+	usetls = flag.Bool("usetls", false, "use https prefix")
 	tickets = map[string]Ticket{}
 	cookieName = "TGCGOLACAS"
 	mutex = &sync.Mutex{}
@@ -140,7 +141,7 @@ func setApi() {
 
 func getLocalURL(c *iris.Context) string {
 	proto := "http"
-	if c.RequestCtx.IsTLS() {
+	if c.RequestCtx.IsTLS() || *usetls {
 		proto = "https"
 	}
 	return proto + "://" + c.HostString() 
