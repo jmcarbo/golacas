@@ -159,50 +159,54 @@ func StreamLoginForm(qw422016 *qt422016.Writer, lt string) {
 	//line login.qtpl:41
 	qw422016.N().S(`
 <form method="POST">
-	<label>Username:</label>
-	<input type="text" name="username" id="username"/>
-	<label>Password:</label>
-	<input type="text" name="password" id="password"/>
+	<div class="form-group">
+		<label>Username:</label>
+		<input type="text" class="form-control" name="username" id="username"/>
+	</div>
+	<div class="form-group">
+		<label>Password:</label>
+		<input type="text" class="form-control" name="password" id="password"/>
+	</div>
 	<input type="hidden" name="lt" id="lt" value="`)
-	//line login.qtpl:47
+	//line login.qtpl:51
 	qw422016.E().S(lt)
-	//line login.qtpl:47
+	//line login.qtpl:51
 	qw422016.N().S(`"/>
-	<input type="submit" name="submit" id="submit" value="Login"/>
+	<button type="submit" class="btn btn-default">Login</button>
 </form>
 `)
-//line login.qtpl:50
+//line login.qtpl:54
 }
 
-//line login.qtpl:50
+//line login.qtpl:54
 func WriteLoginForm(qq422016 qtio422016.Writer, lt string) {
-	//line login.qtpl:50
+	//line login.qtpl:54
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:50
+	//line login.qtpl:54
 	StreamLoginForm(qw422016, lt)
-	//line login.qtpl:50
+	//line login.qtpl:54
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:50
+//line login.qtpl:54
 }
 
-//line login.qtpl:50
+//line login.qtpl:54
 func LoginForm(lt string) string {
-	//line login.qtpl:50
+	//line login.qtpl:54
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:50
+	//line login.qtpl:54
 	WriteLoginForm(qb422016, lt)
-	//line login.qtpl:50
+	//line login.qtpl:54
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:50
+	//line login.qtpl:54
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:50
+	//line login.qtpl:54
 	return qs422016
-//line login.qtpl:50
+//line login.qtpl:54
 }
 
-//line login.qtpl:53
+//line login.qtpl:57
 func StreamBodyFooter(qw422016 *qt422016.Writer) {
-	//line login.qtpl:53
+	//line login.qtpl:57
 	qw422016.N().S(`
 </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -211,66 +215,66 @@ func StreamBodyFooter(qw422016 *qt422016.Writer) {
     <script src="js/bootstrap.min.js"></script>
 </body>
 `)
-//line login.qtpl:60
+//line login.qtpl:64
 }
 
-//line login.qtpl:60
+//line login.qtpl:64
 func WriteBodyFooter(qq422016 qtio422016.Writer) {
-	//line login.qtpl:60
+	//line login.qtpl:64
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:60
+	//line login.qtpl:64
 	StreamBodyFooter(qw422016)
-	//line login.qtpl:60
+	//line login.qtpl:64
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:60
+//line login.qtpl:64
 }
 
-//line login.qtpl:60
+//line login.qtpl:64
 func BodyFooter() string {
-	//line login.qtpl:60
+	//line login.qtpl:64
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:60
+	//line login.qtpl:64
 	WriteBodyFooter(qb422016)
-	//line login.qtpl:60
+	//line login.qtpl:64
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:60
+	//line login.qtpl:64
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:60
+	//line login.qtpl:64
 	return qs422016
-//line login.qtpl:60
+//line login.qtpl:64
 }
 
-//line login.qtpl:62
+//line login.qtpl:66
 func StreamHtmlFooter(qw422016 *qt422016.Writer) {
-	//line login.qtpl:62
+	//line login.qtpl:66
 	qw422016.N().S(`
 </html>
 `)
-//line login.qtpl:64
+//line login.qtpl:68
 }
 
-//line login.qtpl:64
+//line login.qtpl:68
 func WriteHtmlFooter(qq422016 qtio422016.Writer) {
-	//line login.qtpl:64
+	//line login.qtpl:68
 	qw422016 := qt422016.AcquireWriter(qq422016)
-	//line login.qtpl:64
+	//line login.qtpl:68
 	StreamHtmlFooter(qw422016)
-	//line login.qtpl:64
+	//line login.qtpl:68
 	qt422016.ReleaseWriter(qw422016)
-//line login.qtpl:64
+//line login.qtpl:68
 }
 
-//line login.qtpl:64
+//line login.qtpl:68
 func HtmlFooter() string {
-	//line login.qtpl:64
+	//line login.qtpl:68
 	qb422016 := qt422016.AcquireByteBuffer()
-	//line login.qtpl:64
+	//line login.qtpl:68
 	WriteHtmlFooter(qb422016)
-	//line login.qtpl:64
+	//line login.qtpl:68
 	qs422016 := string(qb422016.B)
-	//line login.qtpl:64
+	//line login.qtpl:68
 	qt422016.ReleaseByteBuffer(qb422016)
-	//line login.qtpl:64
+	//line login.qtpl:68
 	return qs422016
-//line login.qtpl:64
+//line login.qtpl:68
 }
