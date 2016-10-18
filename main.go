@@ -48,7 +48,7 @@ type Ticket struct {
 func NewTicket(class string, service string, user string, renew bool) *Ticket {
 	t := Ticket{ Class: class, Value: class+RandString(128), CreatedAt: time.Now(), User: user, Service: service, Renew: renew }
 	mutex.Lock()
-	tickets[t.Value]=t	
+	tickets[t.Value]=t
 	mutex.Unlock()
 	return &t
 }
@@ -81,7 +81,7 @@ func NewTGC(ctx *iris.Context, ticket *Ticket) {
 
 func GetTGC(ctx *iris.Context) *Ticket {
 	payload := ctx.GetCookie(cookieName)
-	return GetTicket(payload) 
+	return GetTicket(payload)
 }
 
 func DeleteTGC(ctx *iris.Context)  {
@@ -122,11 +122,19 @@ func setApi() {
 
 }
 
+func getLocalURL(c *iris.Context) string {
+	proto := "http"
+	if c.RequestCtx.IsTLS() {
+		proto = "https"
+	}
+	return proto + "://" + c.HostString() 
+}
+
 func login(c *iris.Context) {
 	service := c.URLParam("service")
 	tgc := GetTGC(c)
 	if tgc != nil {
-		localservice := "http://"+ c.HostString() + iris.Path("login")
+		localservice := getLocalURL(c) + iris.Path("login")
 		st := NewTicket("ST", service, tgc.User, false)
 		c.SetFlash("login_status", "User validation succeeded")
 		if service != "" && service != localservice {
@@ -151,7 +159,7 @@ func loginPost(c *iris.Context) {
 	password := c.FormValueString("password")
 
 	if service == "" {
-		service = "http://"+ c.HostString() + iris.Path("login")
+		service = getLocalURL(c) + iris.Path("login")
 	}
 	if username == "" || username != password {
 		c.SetFlash("login_status", "ERROR. User unknown or incorrect password")
