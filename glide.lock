@@ -1,5 +1,5 @@
-hash: 1cb1a48c00375bd4d311123d0a933ca1c3a34606774764eea962c53741a3d9a4
-updated: 2016-10-18T12:23:46.668333822+02:00
+hash: c0cd38c5c85fa298115ea96d281c93fecee55442b5360a06debb3d6a27759307
+updated: 2016-10-18T19:49:00.420769794+02:00
 imports:
 - name: github.com/ajg/form
   version: 523a5da1a92f01b01f840b61689c0340a0243532
@@ -39,6 +39,8 @@ imports:
   version: 2a9ed749d24d8d2a8ece891b7b6242f0b3192d62
 - name: github.com/iris-contrib/websocket
   version: cc9f1712095295a828e9a2efaef388d30b9c7760
+- name: github.com/jmcarbo/ldap
+  version: f59fe44b397918f19d9394993015b6d1f153fd7c
 - name: github.com/kardianos/osext
   version: c2c54e542fb797ad986b31721e1baedf214ca413
 - name: github.com/kardianos/service
@@ -59,7 +61,7 @@ imports:
   - text
   - xml
 - name: github.com/kataras/go-sessions
-  version: 19c698d7f96387c7eaedee29d8c3648b90f7ec1d
+  version: 65679d77b19bf6a6fc3ce3bda6ed8f19e9c4c6d2
 - name: github.com/kataras/go-template
   version: b99158ff1faa4a4857d17c3bb9bf2a1e7beab3be
   subpackages:
@@ -99,6 +101,10 @@ imports:
   - diffmatchpatch
 - name: github.com/shurcooL/sanitized_anchor_name
   version: 1dba4b3954bc059efc3991ec364f9f9a35f597d2
+- name: github.com/stesla/ldap
+  version: f59fe44b397918f19d9394993015b6d1f153fd7c
+  subpackages:
+  - asn1
 - name: github.com/stretchr/testify
   version: 976c720a22c8eb4eb6a0b4348ad85ad12491a506
   subpackages:
@@ -130,7 +136,7 @@ imports:
 - name: github.com/yudai/golcs
   version: d1c525dea8ce39ea9a783d33cf08932305373f2c
 - name: golang.org/x/crypto
-  version: 14f9af67c679edd414f72f13d67c917447113df2
+  version: 9e9c7d4ed3e28836a0741f74011e308570bec743
   subpackages:
   - curve25519
   - ed25519

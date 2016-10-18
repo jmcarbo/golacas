@@ -3,7 +3,11 @@ package main
 import (
 	"github.com/kataras/iris"
 	"github.com/valyala/fasthttp"
+	"github.com/jmcarbo/ldap"
 	"time"
+	"fmt"
+	"flag"
+	"strings"
 	"math/rand"
 	"sync"
 	"github.com/jmcarbo/golacas/templates"
@@ -104,13 +108,18 @@ var (
 	tickets = map[string]Ticket{}
 	cookieName = "TGCGOLACAS"
 	mutex = &sync.Mutex{}
+	port = flag.String("port", "8080", "CAS listening port")
+	ldapServer = flag.String("ldap", "localhost:389", "LDAP server")
+	domain = flag.String("domain", "", "LDAP domain")
+
 )
 
 
 
 func main() {
+	flag.Parse()
 	setApi()
-	iris.Listen(":8080")
+	iris.Listen(":"+*port)
 }
 
 func setApi() {
@@ -153,6 +162,29 @@ func login(c *iris.Context) {
 	  templates.HtmlFooter())
 }
 
+func validateUser(username, password string) bool {
+
+	if username == "" {
+		return false
+	}
+
+	if *domain != "" && !strings.Contains(username, *domain) {
+		username = username + "@" + *domain
+	}
+
+	c, err := ldap.Dial(*ldapServer)
+	if err != nil {
+		fmt.Println(err)
+		return false
+	}
+	err = c.Bind(username, password)
+	if err != nil {
+		fmt.Println(err)
+		return false
+	}
+	return true
+}
+
 func loginPost(c *iris.Context) {
 	service := c.URLParam("service")
 	username := c.FormValueString("username")
@@ -161,10 +193,14 @@ func loginPost(c *iris.Context) {
 	if service == "" {
 		service = getLocalURL(c) + iris.Path("login")
 	}
-	if username == "" || username != password {
+	if !validateUser(username, password) {
 		c.SetFlash("login_status", "ERROR. User unknown or incorrect password")
+		fmt.Println("Validateuser false")
+		service = getLocalURL(c) + iris.Path("login")
 	} else {
+
 		c.SetFlash("login_status", "User validation succeeded")
+		fmt.Println("Validateuser true")
 		st := NewTicket("ST", service, username, true)
 		NewTGC(c, st)
 		service = service + "?ticket=" + st.Value 
@@ -180,7 +216,7 @@ func logout(c *iris.Context) {
 		c.Write("User has been logged out")
 	} else  {
 		c.Write("User is not logged in")
-	}	
+	}
 }
 
 func validate(c *iris.Context) {

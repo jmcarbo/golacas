@@ -7,3 +7,4 @@ import:
   version: ^20160617.0.0
   subpackages:
   - qtc
+- package: github.com/jmcarbo/ldap
