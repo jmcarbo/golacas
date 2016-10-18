@@ -168,7 +168,7 @@ func StreamLoginForm(qw422016 *qt422016.Writer, lt string) {
 		</div>
 		<div class="form-group">
 			<label>Password:</label>
-			<input type="text" class="form-control" name="password" id="password"/>
+			<input type="password" class="form-control" name="password" id="password"/>
 		</div>
 		<input type="hidden" name="lt" id="lt" value="`)
 	//line login.qtpl:54
