@@ -164,10 +164,10 @@ func login(c *iris.Context) {
 
 	lt := NewTicket("LT", "", "", false)
 	flash, _ := c.GetFlash("login_status")
-	c.HTML(200, templates.HtmlHeader()+
+	c.HTML(200, templates.HtmlHeader()+templates.BodyHeader()+
 	  templates.FlashMessages(flash)+
 	  templates.LoginForm(lt.Value)+
-	  templates.HtmlFooter())
+	  templates.BodyFooter()+templates.HtmlFooter())
 }
 
 func validateUser(username, password string) bool {
