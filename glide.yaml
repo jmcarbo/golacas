@@ -1,0 +1,9 @@
+package: github.com/jmcarbo/golacas
+import:
+- package: github.com/kataras/iris
+  subpackages:
+  - httptest
+- package: github.com/valyala/quicktemplate
+  version: ^20160617.0.0
+  subpackages:
+  - qtc

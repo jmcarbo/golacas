@@ -1,0 +1,39 @@
+{% func HtmlHeader() %}
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<meta name="description" content="login form">
+	<meta name="keywords" content="HTML,CSS,XML,JavaScript">
+	<meta name="author" content="Joan Marc Carbó i Arnau">
+  </head>
+{% endfunc %}
+
+{% func BodyHeader() %}
+<body>
+{% endfunc %}
+
+{% func FlashMessages(messages string) %}
+<div>
+{%s messages %}
+</div>
+{% endfunc %}
+
+{% func LoginForm(lt string) %}
+<form method="POST">
+	<label>Username:</label>
+	<input type="text" name="username" id="username"/>
+	<label>Password:</label>
+	<input type="text" name="password" id="password"/>
+	<input type="hidden" name="lt" id="lt" value="{%s lt %}"/>
+	<input type="submit" name="submit" id="submit" value="Login"/>
+</form>
+{% endfunc %}
+
+
+{% func BodyFooter() %}
+</body>
+{% endfunc %}
+
+{% func HtmlFooter() %}
+</html>
+{% endfunc %}

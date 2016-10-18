@@ -1,0 +1,17 @@
+{% func Redirect(url string) %}
+<html>
+    <head>
+        <title>Yale Central Authentication Service</title>
+        <script>
+            window.location.href="{%s url %}";
+       </script>
+    </head>
+    <body>
+        <noscript>
+            <p>CAS login successful.</p>
+            <p>  Click <a href="{%s url %}" >here</a>
+            to access the service you requested.<br />  </p>
+        </noscript>
+    </body>
+ </html>
+{% endfunc %}
