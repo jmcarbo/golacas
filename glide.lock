@@ -1,5 +1,5 @@
-hash: b56e761a6d3fd8dc147f55e0a672866a31a99e972a4e8eea34c42b17156cf74d
-updated: 2016-10-19T07:37:17.177083628+02:00
+hash: 7f4a991ecc40c91efb8d9d39418f5b581cf8062406a15197063be0cb13ccf892
+updated: 2016-10-19T14:40:05.325243457+02:00
 imports:
 - name: github.com/ajg/form
   version: 523a5da1a92f01b01f840b61689c0340a0243532
@@ -25,8 +25,10 @@ imports:
   version: 9235644dd9e52eeae6fa48efd539fdc351a0af53
   subpackages:
   - query
+- name: github.com/gorilla/securecookie
+  version: 667fe4e3466a040b780561fe9b51a83a3753eefc
 - name: github.com/gorilla/websocket
-  version: 5df680c89f2a84ad9cb16cf143557a0853cfaabc
+  version: 8003df83eef3a5d5301beb970356755128810563
 - name: github.com/hashicorp/go-version
   version: deeb027c13a95d56c7585df3fe29207208c6706e
 - name: github.com/imdario/mergo
@@ -65,7 +67,7 @@ imports:
   - text
   - xml
 - name: github.com/kataras/go-sessions
-  version: 65679d77b19bf6a6fc3ce3bda6ed8f19e9c4c6d2
+  version: 19c698d7f96387c7eaedee29d8c3648b90f7ec1d
 - name: github.com/kataras/go-template
   version: b99158ff1faa4a4857d17c3bb9bf2a1e7beab3be
   subpackages:
@@ -134,7 +136,7 @@ imports:
 - name: github.com/xeipuuv/gojsonschema
   version: 00f9fafb54d2244d291b86ab63d12c38bd5c3886
 - name: github.com/xenolf/lego
-  version: e953bbc8b95ad7d2f7172ae6732e71069be48957
+  version: bb51288200705e835bdc7829f4f121f1dbffd827
   subpackages:
   - acme
 - name: github.com/yalp/jsonpath
@@ -142,7 +144,7 @@ imports:
 - name: github.com/yudai/golcs
   version: d1c525dea8ce39ea9a783d33cf08932305373f2c
 - name: golang.org/x/crypto
-  version: 9e9c7d4ed3e28836a0741f74011e308570bec743
+  version: 14f9af67c679edd414f72f13d67c917447113df2
   subpackages:
   - curve25519
   - ed25519
@@ -151,7 +153,7 @@ imports:
   - ssh
   - ssh/terminal
 - name: golang.org/x/net
-  version: a625e3953219464fdd5611bb48bf87c927717295
+  version: 8b4af36cd21a1f85a7484b49feb7c79363106d8e
   subpackages:
   - context
   - html

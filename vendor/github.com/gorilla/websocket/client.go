@@ -78,11 +78,6 @@ type Dialer struct {
 	// guarantee that compression will be supported. Currently only "no context
 	// takeover" modes are supported.
 	EnableCompression bool
-
-	// Jar specifies the cookie jar.
-	// If Jar is nil, cookies are not sent in requests and ignored
-	// in responses.
-	Jar http.CookieJar
 }
 
 var errMalformedURL = errors.New("malformed ws or wss URL")
@@ -96,6 +91,7 @@ func parseURL(s string) (*url.URL, error) {
 	//
 	// ws-URI = "ws:" "//" host [ ":" port ] path [ "?" query ]
 	// wss-URI = "wss:" "//" host [ ":" port ] path [ "?" query ]
+
 	var u url.URL
 	switch {
 	case strings.HasPrefix(s, "ws://"):
@@ -203,13 +199,6 @@ func (d *Dialer) Dial(urlStr string, requestHeader http.Header) (*Conn, *http.Re
 		ProtoMinor: 1,
 		Header:     make(http.Header),
 		Host:       u.Host,
-	}
-
-	// Set the cookies present in the cookie jar of the dialer
-	if d.Jar != nil {
-		for _, cookie := range d.Jar.Cookies(u) {
-			req.AddCookie(cookie)
-		}
 	}
 
 	// Set the request headers using the capitalization for names and values in
@@ -348,13 +337,6 @@ func (d *Dialer) Dial(urlStr string, requestHeader http.Header) (*Conn, *http.Re
 	if err != nil {
 		return nil, nil, err
 	}
-
-	if d.Jar != nil {
-		if rc := resp.Cookies(); len(rc) > 0 {
-			d.Jar.SetCookies(u, rc)
-		}
-	}
-
 	if resp.StatusCode != 101 ||
 		!strings.EqualFold(resp.Header.Get("Upgrade"), "websocket") ||
 		!strings.EqualFold(resp.Header.Get("Connection"), "upgrade") ||

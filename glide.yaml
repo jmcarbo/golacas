@@ -13,3 +13,5 @@ import:
 - package: github.com/iris-contrib/middleware
   subpackages:
   - logger
+- package: github.com/gorilla/securecookie
+  version: ^1.1.0

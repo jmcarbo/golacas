@@ -12,6 +12,7 @@ import (
 	"sync"
 	"github.com/jmcarbo/golacas/templates"
 	"github.com/robfig/cron"
+	"github.com/gorilla/securecookie"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -22,6 +23,9 @@ const (
 )
 
 var src = rand.NewSource(time.Now().UnixNano())
+var hashKey = []byte("very-secret")
+var blockKey = []byte("0123456789123456")
+var secure = securecookie.New(hashKey, blockKey)
 
 func RandString(n int) string {
     b := make([]byte, n)
@@ -79,14 +83,22 @@ func NewTGC(ctx *iris.Context, ticket *Ticket) {
 	var cookie fasthttp.Cookie
 	cookie.SetKey(cookieName)
 	tgt := NewTicket("TGT", ticket.Service, ticket.User, false)
-	cookie.SetValue(tgt.Value)
+	encoded_value, err := secure.Encode(cookieName, tgt.Value)
+	if err != nil {
+		ctx.Log("Error encoding cookie %v", err)
+	}	
+	ctx.Log("Ticket: %s", tgt.Value)
+	cookie.SetValue(encoded_value)
 	cookie.SetPath(*basePath)
 	ctx.SetCookie(&cookie)
 }
 
 func GetTGC(ctx *iris.Context) *Ticket {
 	payload := ctx.GetCookie(cookieName)
-	return GetTicket(payload)
+	var decoded_value string
+	secure.Decode(cookieName, payload, &decoded_value)
+	ctx.Log("Ticket: %s", decoded_value)
+	return GetTicket(decoded_value)
 }
 
 func DeleteTGC(ctx *iris.Context)  {
@@ -121,9 +133,11 @@ var (
 func main() {
 	cr := cron.New()
 	cr.AddFunc(fmt.Sprintf("@every %dm", garbageCollectionPeriod), collectTickets)
+	cr.Start()
 	flag.Parse()
 	setApi()
 	iris.Listen(":"+*port)
+	cr.Stop()
 }
 
 func collectTickets() {
@@ -133,7 +147,7 @@ func collectTickets() {
 		five := time.Now().Add(-m5)
 		mutex.Lock()
 		for k, v := range tickets {
-			if v.CreatedAt.Before(five) {
+			if (v.Class == "ST") && v.CreatedAt.Before(five) {
 				delete(tickets, k)
 				numTicketsCollected++
 			}
