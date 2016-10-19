@@ -11,6 +11,7 @@ import (
 	"math/rand"
 	"sync"
 	"github.com/jmcarbo/golacas/templates"
+	"github.com/robfig/cron"
 )
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -112,12 +113,19 @@ var (
 	port = flag.String("port", "8080", "CAS listening port")
 	ldapServer = flag.String("ldap", "localhost:389", "LDAP server")
 	domain = flag.String("domain", "", "LDAP domain")
-
+	garbageCollectionPeriod = 5
 )
 
 
 
 func main() {
+	cr := cron.New()
+	cr.AddFunc(fmt.Sprintf("@every %dm", garbageCollectionPeriod), func () {
+		fmt.Printf("Cleaning tickets\n")
+		mutex.Lock()
+		mutex.Unlock()
+	})
+
 	flag.Parse()
 	setApi()
 	iris.Listen(":"+*port)

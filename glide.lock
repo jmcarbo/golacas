@@ -1,5 +1,5 @@
-hash: c0cd38c5c85fa298115ea96d281c93fecee55442b5360a06debb3d6a27759307
-updated: 2016-10-18T19:49:00.420769794+02:00
+hash: b56e761a6d3fd8dc147f55e0a672866a31a99e972a4e8eea34c42b17156cf74d
+updated: 2016-10-19T07:37:17.177083628+02:00
 imports:
 - name: github.com/ajg/form
   version: 523a5da1a92f01b01f840b61689c0340a0243532
@@ -26,7 +26,7 @@ imports:
   subpackages:
   - query
 - name: github.com/gorilla/websocket
-  version: 8003df83eef3a5d5301beb970356755128810563
+  version: 5df680c89f2a84ad9cb16cf143557a0853cfaabc
 - name: github.com/hashicorp/go-version
   version: deeb027c13a95d56c7585df3fe29207208c6706e
 - name: github.com/imdario/mergo
@@ -37,6 +37,10 @@ imports:
   version: 32009bbc76eda475a6d1eb24787d1fdcdaf80e71
 - name: github.com/iris-contrib/letsencrypt
   version: 2a9ed749d24d8d2a8ece891b7b6242f0b3192d62
+- name: github.com/iris-contrib/middleware
+  version: db2985695d96f7ee38b8681f2d3bbf6cf6be01a2
+  subpackages:
+  - logger
 - name: github.com/iris-contrib/websocket
   version: cc9f1712095295a828e9a2efaef388d30b9c7760
 - name: github.com/jmcarbo/ldap
@@ -93,6 +97,8 @@ imports:
   version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
   - difflib
+- name: github.com/robfig/cron
+  version: b024fc5ea0e34bc3f83d9941c8d60b0622bfaca4
 - name: github.com/russross/blackfriday
   version: 5f33e7b7878355cd2b7e6b8eefc48a5472c69f70
 - name: github.com/sergi/go-diff
@@ -128,7 +134,7 @@ imports:
 - name: github.com/xeipuuv/gojsonschema
   version: 00f9fafb54d2244d291b86ab63d12c38bd5c3886
 - name: github.com/xenolf/lego
-  version: bb51288200705e835bdc7829f4f121f1dbffd827
+  version: e953bbc8b95ad7d2f7172ae6732e71069be48957
   subpackages:
   - acme
 - name: github.com/yalp/jsonpath
@@ -145,7 +151,7 @@ imports:
   - ssh
   - ssh/terminal
 - name: golang.org/x/net
-  version: 8b4af36cd21a1f85a7484b49feb7c79363106d8e
+  version: a625e3953219464fdd5611bb48bf87c927717295
   subpackages:
   - context
   - html

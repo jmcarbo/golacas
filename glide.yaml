@@ -8,3 +8,8 @@ import:
   subpackages:
   - qtc
 - package: github.com/jmcarbo/ldap
+- package: github.com/robfig/cron
+  version: ^1.0.0
+- package: github.com/iris-contrib/middleware
+  subpackages:
+  - logger
