@@ -120,15 +120,26 @@ var (
 
 func main() {
 	cr := cron.New()
-	cr.AddFunc(fmt.Sprintf("@every %dm", garbageCollectionPeriod), func () {
-		fmt.Printf("Cleaning tickets\n")
-		mutex.Lock()
-		mutex.Unlock()
-	})
-
+	cr.AddFunc(fmt.Sprintf("@every %dm", garbageCollectionPeriod), collectTickets)
 	flag.Parse()
 	setApi()
 	iris.Listen(":"+*port)
+}
+
+func collectTickets() {
+		fmt.Printf("Cleaning tickets\n")
+		numTicketsCollected := 0
+		m5, _ :=time.ParseDuration(fmt.Sprintf("%dm",garbageCollectionPeriod))
+		five := time.Now().Add(-m5)
+		mutex.Lock()
+		for k, v := range tickets {
+			if v.CreatedAt.Before(five) {
+				delete(tickets, k)
+				numTicketsCollected++
+			}
+		}
+		mutex.Unlock()
+		fmt.Printf("%d tickets cleaned\n", numTicketsCollected)
 }
 
 func setApi() {
@@ -222,7 +233,7 @@ func loginPost(c *iris.Context) {
 		service = service + "?ticket=" + st.Value 
 	}
 	//c.Redirect(service, 303)
-	c.HTML(200, templates.Redirect(service))
+	c.HTML(200,  templates.Redirect(service) )
 }
 
 func logout(c *iris.Context) {
